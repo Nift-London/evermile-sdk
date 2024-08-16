@@ -1,4 +1,6 @@
 {
+    "name": "evermile/delivery-api",
+    "type": "library",
     "description": "This is Evermile's commercial API for handling delivery quotes and orders",
     "keywords": [
         "openapitools",
