@@ -17,6 +17,10 @@
         {
             "name": "OpenAPI",
             "homepage": "https://openapi-generator.tech"
+        },
+        {
+            "name": "Karol Gasienica",
+            "email": "karol@nift.london"
         }
     ],
     "require": {
