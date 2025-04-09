@@ -356,7 +356,10 @@ class QuotePostRequestParcelsInner implements ModelInterface, ArrayAccess, \Json
             );
         }
 
-        if (!is_null($this->container['items_list']) && (count($this->container['items_list']) < 1)) {
+        if ($this->container['items_list'] === null) {
+            $invalidProperties[] = "'items_list' can't be null";
+        }
+        if ((count($this->container['items_list']) < 1)) {
             $invalidProperties[] = "invalid value for 'items_list', number of items must be greater than or equal to 1.";
         }
 
@@ -523,7 +526,7 @@ class QuotePostRequestParcelsInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets items_list
      *
-     * @return \OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInner[]|null
+     * @return \OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInner[]
      */
     public function getItemsList()
     {
@@ -533,7 +536,7 @@ class QuotePostRequestParcelsInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets items_list
      *
-     * @param \OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInner[]|null $items_list items_list
+     * @param \OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInner[] $items_list items_list
      *
      * @return self
      */

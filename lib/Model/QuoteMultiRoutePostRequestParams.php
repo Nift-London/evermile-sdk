@@ -283,6 +283,7 @@ class QuoteMultiRoutePostRequestParams implements ModelInterface, ArrayAccess, \
     public const PROPOSAL_TYPES_STORE_PICKUP = 'storePickup';
     public const PROPOSAL_TYPES_OWN_FLEET = 'ownFleet';
     public const PROPOSAL_TYPES_COLLECTION_POINT = 'CollectionPoint';
+    public const PROPOSAL_TYPES_PREMIUM = 'Premium';
     public const EXCLUDE_CARRIERS_STUART = 'Stuart';
     public const EXCLUDE_CARRIERS_GOPHR = 'Gophr';
     public const EXCLUDE_CARRIERS_PACKFLEET = 'Packfleet';
@@ -305,6 +306,9 @@ class QuoteMultiRoutePostRequestParams implements ModelInterface, ArrayAccess, \
     public const EXCLUDE_CARRIERS_DHL = 'DHL';
     public const EXCLUDE_CARRIERS_EVERMILE_OWN_FLEET = 'EvermileOwnFleet';
     public const EXCLUDE_CARRIERS_GO_PANDA = 'GoPanda';
+    public const EXCLUDE_CARRIERS_FLICK_FIRST = 'FlickFirst';
+    public const EXCLUDE_CARRIERS_ADDISON_LEE = 'AddisonLee';
+    public const EXCLUDE_CARRIERS_GIDL = 'Gidl';
     public const EXCLUDED_VEHICLE_TYPES_PUSHBIKE = 'pushbike';
     public const EXCLUDED_VEHICLE_TYPES_MOTORBIKE = 'motorbike';
     public const EXCLUDED_VEHICLE_TYPES_CARGO_BIKE = 'cargo_bike';
@@ -327,6 +331,7 @@ class QuoteMultiRoutePostRequestParams implements ModelInterface, ArrayAccess, \
             self::PROPOSAL_TYPES_STORE_PICKUP,
             self::PROPOSAL_TYPES_OWN_FLEET,
             self::PROPOSAL_TYPES_COLLECTION_POINT,
+            self::PROPOSAL_TYPES_PREMIUM,
         ];
     }
 
@@ -360,6 +365,9 @@ class QuoteMultiRoutePostRequestParams implements ModelInterface, ArrayAccess, \
             self::EXCLUDE_CARRIERS_DHL,
             self::EXCLUDE_CARRIERS_EVERMILE_OWN_FLEET,
             self::EXCLUDE_CARRIERS_GO_PANDA,
+            self::EXCLUDE_CARRIERS_FLICK_FIRST,
+            self::EXCLUDE_CARRIERS_ADDISON_LEE,
+            self::EXCLUDE_CARRIERS_GIDL,
         ];
     }
 

@@ -68,7 +68,8 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'cancellation_fee' => '\OpenAPI\Client\Model\QuotePost200ResponseCancellationFee',
         'cancellation_token' => 'string',
         'override_display_hours' => '\OpenAPI\Client\Model\QuotePost200ResponseOverrideDisplayHours',
-        'booking_fee_cents' => 'int'
+        'booking_fee_cents' => 'int',
+        'created_at' => '\DateTime'
     ];
 
     /**
@@ -88,7 +89,8 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'cancellation_fee' => null,
         'cancellation_token' => null,
         'override_display_hours' => null,
-        'booking_fee_cents' => 'int64'
+        'booking_fee_cents' => 'int64',
+        'created_at' => 'date-time'
     ];
 
     /**
@@ -106,7 +108,8 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'cancellation_fee' => false,
         'cancellation_token' => false,
         'override_display_hours' => false,
-        'booking_fee_cents' => false
+        'booking_fee_cents' => false,
+        'created_at' => false
     ];
 
     /**
@@ -204,7 +207,8 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'cancellation_fee' => 'cancellationFee',
         'cancellation_token' => 'cancellationToken',
         'override_display_hours' => 'overrideDisplayHours',
-        'booking_fee_cents' => 'bookingFeeCents'
+        'booking_fee_cents' => 'bookingFeeCents',
+        'created_at' => 'createdAt'
     ];
 
     /**
@@ -222,7 +226,8 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'cancellation_fee' => 'setCancellationFee',
         'cancellation_token' => 'setCancellationToken',
         'override_display_hours' => 'setOverrideDisplayHours',
-        'booking_fee_cents' => 'setBookingFeeCents'
+        'booking_fee_cents' => 'setBookingFeeCents',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -240,7 +245,8 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'cancellation_fee' => 'getCancellationFee',
         'cancellation_token' => 'getCancellationToken',
         'override_display_hours' => 'getOverrideDisplayHours',
-        'booking_fee_cents' => 'getBookingFeeCents'
+        'booking_fee_cents' => 'getBookingFeeCents',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -356,6 +362,7 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('cancellation_token', $data ?? [], null);
         $this->setIfExists('override_display_hours', $data ?? [], null);
         $this->setIfExists('booking_fee_cents', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -713,6 +720,33 @@ class QuotePost200Response implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable booking_fee_cents cannot be null');
         }
         $this->container['booking_fee_cents'] = $booking_fee_cents;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime|null $created_at The creation (request) time of the quote in ISO8601 format
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

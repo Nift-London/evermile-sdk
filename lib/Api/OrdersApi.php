@@ -479,19 +479,20 @@ class OrdersApi
      * @param  string $order_id The ID of the order (required)
      * @param  string $x_evermile_merchant_id The merchant ID, if using a client credentials token. Will be ignored with a regular user token. (optional)
      * @param  string $x_evermile_trace_id A trace ID for tracing the request through the Evermile platform (optional)
-     * @param  bool $no_confirm_if_no_fee Should the order be cancelled immediately if there is no cancellation fee. Default is false. (optional)
+     * @param  bool $no_confirm_if_no_fee If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false. (optional)
      * @param  bool $cancel_all_route Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false. (optional)
      * @param  bool $keep_drafts Should keep as draft orders if draft exists. (optional)
-     * @param  string $x_evermile_token A token to confirm cancellation after receiving 402 code (optional)
+     * @param  string $x_evermile_token A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee (optional)
+     * @param  bool $move_to_planning Should create a new draft and move to planning screen. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['orderOrderIdDelete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function orderOrderIdDelete($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
+    public function orderOrderIdDelete($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, $move_to_planning = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
     {
-        $this->orderOrderIdDeleteWithHttpInfo($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $contentType);
+        $this->orderOrderIdDeleteWithHttpInfo($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $move_to_planning, $contentType);
     }
 
     /**
@@ -502,19 +503,20 @@ class OrdersApi
      * @param  string $order_id The ID of the order (required)
      * @param  string $x_evermile_merchant_id The merchant ID, if using a client credentials token. Will be ignored with a regular user token. (optional)
      * @param  string $x_evermile_trace_id A trace ID for tracing the request through the Evermile platform (optional)
-     * @param  bool $no_confirm_if_no_fee Should the order be cancelled immediately if there is no cancellation fee. Default is false. (optional)
+     * @param  bool $no_confirm_if_no_fee If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false. (optional)
      * @param  bool $cancel_all_route Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false. (optional)
      * @param  bool $keep_drafts Should keep as draft orders if draft exists. (optional)
-     * @param  string $x_evermile_token A token to confirm cancellation after receiving 402 code (optional)
+     * @param  string $x_evermile_token A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee (optional)
+     * @param  bool $move_to_planning Should create a new draft and move to planning screen. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['orderOrderIdDelete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function orderOrderIdDeleteWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
+    public function orderOrderIdDeleteWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, $move_to_planning = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
     {
-        $request = $this->orderOrderIdDeleteRequest($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $contentType);
+        $request = $this->orderOrderIdDeleteRequest($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $move_to_planning, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -576,18 +578,19 @@ class OrdersApi
      * @param  string $order_id The ID of the order (required)
      * @param  string $x_evermile_merchant_id The merchant ID, if using a client credentials token. Will be ignored with a regular user token. (optional)
      * @param  string $x_evermile_trace_id A trace ID for tracing the request through the Evermile platform (optional)
-     * @param  bool $no_confirm_if_no_fee Should the order be cancelled immediately if there is no cancellation fee. Default is false. (optional)
+     * @param  bool $no_confirm_if_no_fee If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false. (optional)
      * @param  bool $cancel_all_route Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false. (optional)
      * @param  bool $keep_drafts Should keep as draft orders if draft exists. (optional)
-     * @param  string $x_evermile_token A token to confirm cancellation after receiving 402 code (optional)
+     * @param  string $x_evermile_token A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee (optional)
+     * @param  bool $move_to_planning Should create a new draft and move to planning screen. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['orderOrderIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function orderOrderIdDeleteAsync($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
+    public function orderOrderIdDeleteAsync($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, $move_to_planning = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
     {
-        return $this->orderOrderIdDeleteAsyncWithHttpInfo($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $contentType)
+        return $this->orderOrderIdDeleteAsyncWithHttpInfo($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $move_to_planning, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -603,19 +606,20 @@ class OrdersApi
      * @param  string $order_id The ID of the order (required)
      * @param  string $x_evermile_merchant_id The merchant ID, if using a client credentials token. Will be ignored with a regular user token. (optional)
      * @param  string $x_evermile_trace_id A trace ID for tracing the request through the Evermile platform (optional)
-     * @param  bool $no_confirm_if_no_fee Should the order be cancelled immediately if there is no cancellation fee. Default is false. (optional)
+     * @param  bool $no_confirm_if_no_fee If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false. (optional)
      * @param  bool $cancel_all_route Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false. (optional)
      * @param  bool $keep_drafts Should keep as draft orders if draft exists. (optional)
-     * @param  string $x_evermile_token A token to confirm cancellation after receiving 402 code (optional)
+     * @param  string $x_evermile_token A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee (optional)
+     * @param  bool $move_to_planning Should create a new draft and move to planning screen. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['orderOrderIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function orderOrderIdDeleteAsyncWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
+    public function orderOrderIdDeleteAsyncWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, $move_to_planning = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
     {
         $returnType = '';
-        $request = $this->orderOrderIdDeleteRequest($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $contentType);
+        $request = $this->orderOrderIdDeleteRequest($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $move_to_planning, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -646,16 +650,17 @@ class OrdersApi
      * @param  string $order_id The ID of the order (required)
      * @param  string $x_evermile_merchant_id The merchant ID, if using a client credentials token. Will be ignored with a regular user token. (optional)
      * @param  string $x_evermile_trace_id A trace ID for tracing the request through the Evermile platform (optional)
-     * @param  bool $no_confirm_if_no_fee Should the order be cancelled immediately if there is no cancellation fee. Default is false. (optional)
+     * @param  bool $no_confirm_if_no_fee If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false. (optional)
      * @param  bool $cancel_all_route Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false. (optional)
      * @param  bool $keep_drafts Should keep as draft orders if draft exists. (optional)
-     * @param  string $x_evermile_token A token to confirm cancellation after receiving 402 code (optional)
+     * @param  string $x_evermile_token A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee (optional)
+     * @param  bool $move_to_planning Should create a new draft and move to planning screen. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['orderOrderIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function orderOrderIdDeleteRequest($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
+    public function orderOrderIdDeleteRequest($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, $no_confirm_if_no_fee = null, $cancel_all_route = null, $keep_drafts = null, $x_evermile_token = null, $move_to_planning = null, string $contentType = self::contentTypes['orderOrderIdDelete'][0])
     {
 
         // verify the required parameter 'order_id' is set
@@ -664,6 +669,7 @@ class OrdersApi
                 'Missing the required parameter $order_id when calling orderOrderIdDelete'
             );
         }
+
 
 
 
@@ -701,6 +707,15 @@ class OrdersApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $keep_drafts,
             'keepDrafts', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $move_to_planning,
+            'moveToPlanning', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -1416,7 +1431,7 @@ class OrdersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/pdf', 'text/html', ],
+            ['application/pdf', 'text/html', 'text/url', ],
             $contentType,
             $multipart
         );
@@ -1488,7 +1503,7 @@ class OrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo
      */
     public function orderOrderIdLiveTrackingGet($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, string $contentType = self::contentTypes['orderOrderIdLiveTrackingGet'][0])
     {
@@ -1508,7 +1523,7 @@ class OrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo, HTTP status code, HTTP response headers (array of strings)
      */
     public function orderOrderIdLiveTrackingGetWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, string $contentType = self::contentTypes['orderOrderIdLiveTrackingGet'][0])
     {
@@ -1551,11 +1566,11 @@ class OrdersApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo' !== 'string') {
+                        if ('\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1573,13 +1588,13 @@ class OrdersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo';
+            $returnType = '\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1612,7 +1627,7 @@ class OrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo',
+                        '\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1660,7 +1675,7 @@ class OrdersApi
      */
     public function orderOrderIdLiveTrackingGetAsyncWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, string $contentType = self::contentTypes['orderOrderIdLiveTrackingGet'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo';
+        $returnType = '\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo';
         $request = $this->orderOrderIdLiveTrackingGetRequest($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $contentType);
 
         return $this->client
@@ -2457,7 +2472,7 @@ class OrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]
+     * @return \OpenAPI\Client\Model\OrdersGet200ResponseInner[]
      */
     public function ordersGet($x_evermile_merchant_id = null, $x_evermile_trace_id = null, $x_evermile_store_id = null, $from = null, $to = null, $statuses = null, $scheduled = null, string $contentType = self::contentTypes['ordersGet'][0])
     {
@@ -2481,7 +2496,7 @@ class OrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\OrdersGet200ResponseInner[], HTTP status code, HTTP response headers (array of strings)
      */
     public function ordersGetWithHttpInfo($x_evermile_merchant_id = null, $x_evermile_trace_id = null, $x_evermile_store_id = null, $from = null, $to = null, $statuses = null, $scheduled = null, string $contentType = self::contentTypes['ordersGet'][0])
     {
@@ -2524,11 +2539,11 @@ class OrdersApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\OrdersGet200ResponseInner[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\OrdersGet200ResponseInner[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2546,13 +2561,13 @@ class OrdersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\OrdersGet200ResponseInner[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]';
+            $returnType = '\OpenAPI\Client\Model\OrdersGet200ResponseInner[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2585,7 +2600,7 @@ class OrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]',
+                        '\OpenAPI\Client\Model\OrdersGet200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2641,7 +2656,7 @@ class OrdersApi
      */
     public function ordersGetAsyncWithHttpInfo($x_evermile_merchant_id = null, $x_evermile_trace_id = null, $x_evermile_store_id = null, $from = null, $to = null, $statuses = null, $scheduled = null, string $contentType = self::contentTypes['ordersGet'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]';
+        $returnType = '\OpenAPI\Client\Model\OrdersGet200ResponseInner[]';
         $request = $this->ordersGetRequest($x_evermile_merchant_id, $x_evermile_trace_id, $x_evermile_store_id, $from, $to, $statuses, $scheduled, $contentType);
 
         return $this->client

@@ -63,7 +63,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         'price' => '\OpenAPI\Client\Model\QuoteMultiRoutePost200ResponseProposalsInnerPrice',
         'price_vat' => '\OpenAPI\Client\Model\QuoteMultiRoutePost200ResponseProposalsInnerPriceVat',
         'price_per_drop' => '\OpenAPI\Client\Model\QuoteMultiRoutePost200ResponseProposalsInnerPricePerDrop',
-        'credit_back' => 'int',
         'predicted_emission_saving_kg' => 'float',
         'routes' => '\OpenAPI\Client\Model\QuoteMultiRoutePost200ResponseProposalsInnerRoutesInner[]',
         'optimized_tasks_order' => 'bool'
@@ -81,7 +80,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         'price' => null,
         'price_vat' => null,
         'price_per_drop' => null,
-        'credit_back' => 'int64',
         'predicted_emission_saving_kg' => 'float',
         'routes' => null,
         'optimized_tasks_order' => null
@@ -97,7 +95,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         'price' => false,
         'price_vat' => false,
         'price_per_drop' => false,
-        'credit_back' => false,
         'predicted_emission_saving_kg' => false,
         'routes' => false,
         'optimized_tasks_order' => false
@@ -193,7 +190,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         'price' => 'price',
         'price_vat' => 'priceVat',
         'price_per_drop' => 'pricePerDrop',
-        'credit_back' => 'creditBack',
         'predicted_emission_saving_kg' => 'predictedEmissionSavingKg',
         'routes' => 'routes',
         'optimized_tasks_order' => 'optimizedTasksOrder'
@@ -209,7 +205,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         'price' => 'setPrice',
         'price_vat' => 'setPriceVat',
         'price_per_drop' => 'setPricePerDrop',
-        'credit_back' => 'setCreditBack',
         'predicted_emission_saving_kg' => 'setPredictedEmissionSavingKg',
         'routes' => 'setRoutes',
         'optimized_tasks_order' => 'setOptimizedTasksOrder'
@@ -225,7 +220,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         'price' => 'getPrice',
         'price_vat' => 'getPriceVat',
         'price_per_drop' => 'getPricePerDrop',
-        'credit_back' => 'getCreditBack',
         'predicted_emission_saving_kg' => 'getPredictedEmissionSavingKg',
         'routes' => 'getRoutes',
         'optimized_tasks_order' => 'getOptimizedTasksOrder'
@@ -292,7 +286,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_vat', $data ?? [], null);
         $this->setIfExists('price_per_drop', $data ?? [], null);
-        $this->setIfExists('credit_back', $data ?? [], null);
         $this->setIfExists('predicted_emission_saving_kg', $data ?? [], null);
         $this->setIfExists('routes', $data ?? [], null);
         $this->setIfExists('optimized_tasks_order', $data ?? [], null);
@@ -459,33 +452,6 @@ class QuoteMultiRoutePost200ResponseProposalsInner implements ModelInterface, Ar
             throw new \InvalidArgumentException('non-nullable price_per_drop cannot be null');
         }
         $this->container['price_per_drop'] = $price_per_drop;
-
-        return $this;
-    }
-
-    /**
-     * Gets credit_back
-     *
-     * @return int|null
-     */
-    public function getCreditBack()
-    {
-        return $this->container['credit_back'];
-    }
-
-    /**
-     * Sets credit_back
-     *
-     * @param int|null $credit_back The amount of credits this proposal awards, in credit cents
-     *
-     * @return self
-     */
-    public function setCreditBack($credit_back)
-    {
-        if (is_null($credit_back)) {
-            throw new \InvalidArgumentException('non-nullable credit_back cannot be null');
-        }
-        $this->container['credit_back'] = $credit_back;
 
         return $this;
     }

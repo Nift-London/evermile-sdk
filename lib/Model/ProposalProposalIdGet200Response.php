@@ -61,7 +61,8 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
     protected static $openAPITypes = [
         'proposal' => '\OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposal',
         'valid_until' => '\DateTime',
-        'created_order_id' => 'string'
+        'created_order_id' => 'string',
+        'created_at' => '\DateTime'
     ];
 
     /**
@@ -74,7 +75,8 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
     protected static $openAPIFormats = [
         'proposal' => null,
         'valid_until' => 'date-time',
-        'created_order_id' => 'uuid'
+        'created_order_id' => 'uuid',
+        'created_at' => 'date-time'
     ];
 
     /**
@@ -85,7 +87,8 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
     protected static array $openAPINullables = [
         'proposal' => false,
         'valid_until' => false,
-        'created_order_id' => false
+        'created_order_id' => false,
+        'created_at' => false
     ];
 
     /**
@@ -176,7 +179,8 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
     protected static $attributeMap = [
         'proposal' => 'proposal',
         'valid_until' => 'validUntil',
-        'created_order_id' => 'createdOrderId'
+        'created_order_id' => 'createdOrderId',
+        'created_at' => 'createdAt'
     ];
 
     /**
@@ -187,7 +191,8 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
     protected static $setters = [
         'proposal' => 'setProposal',
         'valid_until' => 'setValidUntil',
-        'created_order_id' => 'setCreatedOrderId'
+        'created_order_id' => 'setCreatedOrderId',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -198,7 +203,8 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
     protected static $getters = [
         'proposal' => 'getProposal',
         'valid_until' => 'getValidUntil',
-        'created_order_id' => 'getCreatedOrderId'
+        'created_order_id' => 'getCreatedOrderId',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -261,6 +267,7 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
         $this->setIfExists('proposal', $data ?? [], null);
         $this->setIfExists('valid_until', $data ?? [], null);
         $this->setIfExists('created_order_id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -388,6 +395,33 @@ class ProposalProposalIdGet200Response implements ModelInterface, ArrayAccess, \
             throw new \InvalidArgumentException('non-nullable created_order_id cannot be null');
         }
         $this->container['created_order_id'] = $created_order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime|null $created_at The creation (request) time of the proposal in ISO8601 format
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

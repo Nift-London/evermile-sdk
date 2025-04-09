@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **sku** | **string** | An optional SKU for this item | [optional]
 **weight_kg** | **float** | Weight of the item in Kilograms | [optional]
 **collection_config** | [**\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfig**](QuotePostRequestParcelsInnerItemsListInnerCollectionConfig.md) |  | [optional]
+**external_data** | [**\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerExternalData**](QuotePostRequestParcelsInnerItemsListInnerExternalData.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

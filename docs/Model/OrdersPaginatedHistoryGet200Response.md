@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**results** | [**\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]**](OrdersPaginatedHistoryGet200ResponseResultsInner.md) |  |
+**results** | [**\OpenAPI\Client\Model\OrdersGet200ResponseInner[]**](OrdersGet200ResponseInner.md) |  |
 **last_timestamp** | **\DateTime** |  |
 **last_id** | **string** |  |
 

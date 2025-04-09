@@ -8,5 +8,7 @@ Name | Type | Description | Notes
 **preparation_config** | [**\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfigPreparationConfig**](QuotePostRequestParcelsInnerItemsListInnerCollectionConfigPreparationConfig.md) |  | [optional]
 **blackout_dates** | [**\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfigBlackoutDatesInner[]**](QuotePostRequestParcelsInnerItemsListInnerCollectionConfigBlackoutDatesInner.md) | A list of blackout dates for the location | [optional]
 **max_days_in_hub** | **int** | The maximum number of days this item can stay in the hub when delivered overnight | [optional]
+**allow_nationwide** | **bool** | Whether to allow nationwide collections | [optional]
+**allow_nationwide_remote** | **bool** | Whether to allow nationwide remote collections | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

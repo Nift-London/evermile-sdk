@@ -83,12 +83,12 @@ try {
 ## `orderOrderIdDelete()`
 
 ```php
-orderOrderIdDelete($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token)
+orderOrderIdDelete($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $move_to_planning)
 ```
 
 Cancel an order
 
-Cancel the order with the given ID.<br> This is an asynchronous call.<br> Updates will be sent via the status update API and can be requested by the order details API.
+Cancel the order with the given ID.  This is an asynchronous call. Updates will be sent via the status update API and can be requested by the order details API.  ## Cancellation Confirmation Flow When cancelling an order that incurs a cancellation fee, the API will return a 402 (Payment Required) response with a token. To complete the cancellation:  1. The first API call may return a 402 error with a token if a cancellation fee applies 2. You must make a second API call with the returned token in the `x-evermile-token` header to confirm the cancellation and accept any fee 3. If you set `noConfirmIfNoFee=true` and there is no cancellation fee, the order will be automatically cancelled without requiring confirmation  Without confirmation via the second call with the token, the cancellation will not be processed.
 
 ### Example
 
@@ -113,13 +113,14 @@ $apiInstance = new OpenAPI\Client\Api\OrdersApi(
 $order_id = 'order_id_example'; // string | The ID of the order
 $x_evermile_merchant_id = 'x_evermile_merchant_id_example'; // string | The merchant ID, if using a client credentials token. Will be ignored with a regular user token.
 $x_evermile_trace_id = 'x_evermile_trace_id_example'; // string | A trace ID for tracing the request through the Evermile platform
-$no_confirm_if_no_fee = true; // bool | Should the order be cancelled immediately if there is no cancellation fee. Default is false.
+$no_confirm_if_no_fee = true; // bool | If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false.
 $cancel_all_route = true; // bool | Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false.
 $keep_drafts = true; // bool | Should keep as draft orders if draft exists.
-$x_evermile_token = 'x_evermile_token_example'; // string | A token to confirm cancellation after receiving 402 code
+$x_evermile_token = 'x_evermile_token_example'; // string | A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee
+$move_to_planning = true; // bool | Should create a new draft and move to planning screen.
 
 try {
-    $apiInstance->orderOrderIdDelete($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token);
+    $apiInstance->orderOrderIdDelete($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $no_confirm_if_no_fee, $cancel_all_route, $keep_drafts, $x_evermile_token, $move_to_planning);
 } catch (Exception $e) {
     echo 'Exception when calling OrdersApi->orderOrderIdDelete: ', $e->getMessage(), PHP_EOL;
 }
@@ -132,10 +133,11 @@ try {
 | **order_id** | **string**| The ID of the order | |
 | **x_evermile_merchant_id** | **string**| The merchant ID, if using a client credentials token. Will be ignored with a regular user token. | [optional] |
 | **x_evermile_trace_id** | **string**| A trace ID for tracing the request through the Evermile platform | [optional] |
-| **no_confirm_if_no_fee** | **bool**| Should the order be cancelled immediately if there is no cancellation fee. Default is false. | [optional] |
+| **no_confirm_if_no_fee** | **bool**| If set to true, the order will be cancelled immediately when there is no cancellation fee. If false, confirmation is always required. Default is false. | [optional] |
 | **cancel_all_route** | **bool**| Should all the route orders be cancelled immediately if there is no cancellation fee. Default is false. | [optional] |
 | **keep_drafts** | **bool**| Should keep as draft orders if draft exists. | [optional] |
-| **x_evermile_token** | **string**| A token to confirm cancellation after receiving 402 code | [optional] |
+| **x_evermile_token** | **string**| A token returned from a previous 402 response to confirm cancellation and accept any cancellation fee | [optional] |
+| **move_to_planning** | **bool**| Should create a new draft and move to planning screen. | [optional] |
 
 ### Return type
 
@@ -231,7 +233,7 @@ orderOrderIdLabelGet($order_id, $x_evermile_merchant_id, $x_evermile_trace_id): 
 
 Create a label for an order
 
-Create a label for an order, return the file's contents
+Creates a shipping label for an order. The response format is determined by the `Accept` header in the request:   `Accept: application/pdf` - Returns the label as PDF binary content `Accept: text/html` - Returns the label as HTML content `Accept: text/url` - Returns a URL to download the label If no Accept header is specified, the default response is `application/pdf`.
 
 ### Example
 
@@ -284,7 +286,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/pdf`, `text/html`
+- **Accept**: `application/pdf`, `text/html`, `text/url`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -293,7 +295,7 @@ try {
 ## `orderOrderIdLiveTrackingGet()`
 
 ```php
-orderOrderIdLiveTrackingGet($order_id, $x_evermile_merchant_id, $x_evermile_trace_id): \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo
+orderOrderIdLiveTrackingGet($order_id, $x_evermile_merchant_id, $x_evermile_trace_id): \OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo
 ```
 
 Fetch live order tracking
@@ -342,7 +344,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo**](../Model/OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo.md)
+[**\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo**](../Model/OrderPost201ResponseOrderTrackingInfo.md)
 
 ### Authorization
 
@@ -499,7 +501,7 @@ try {
 ## `ordersGet()`
 
 ```php
-ordersGet($x_evermile_merchant_id, $x_evermile_trace_id, $x_evermile_store_id, $from, $to, $statuses, $scheduled): \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]
+ordersGet($x_evermile_merchant_id, $x_evermile_trace_id, $x_evermile_store_id, $from, $to, $statuses, $scheduled): \OpenAPI\Client\Model\OrdersGet200ResponseInner[]
 ```
 
 Get orders
@@ -556,7 +558,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]**](../Model/OrdersPaginatedHistoryGet200ResponseResultsInner.md)
+[**\OpenAPI\Client\Model\OrdersGet200ResponseInner[]**](../Model/OrdersGet200ResponseInner.md)
 
 ### Authorization
 

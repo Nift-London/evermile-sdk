@@ -64,14 +64,16 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'pickup_contact_details' => '\OpenAPI\Client\Model\OrderPostRequestPickupContactDetails',
         'pickup_location_id' => 'string',
         'dropoff_contact_details' => '\OpenAPI\Client\Model\OrderPostRequestDropoffContactDetails',
-        'sender_contact_details' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails',
+        'sender_contact_details' => '\OpenAPI\Client\Model\OrderPostRequestSenderContactDetails',
         'use_credits' => 'bool',
         'proof_of_delivery_requirement' => 'string[]',
         'extended_liability_coverage_cents' => 'int',
         'draft_order_id' => 'string',
         'recipient_message' => 'string',
         'is_gift' => 'bool',
-        'simulated_order' => 'bool'
+        'simulated_order' => 'bool',
+        'is_no_date_committed' => 'bool',
+        'external_data' => '\OpenAPI\Client\Model\OrderPostRequestExternalData'
     ];
 
     /**
@@ -94,7 +96,9 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'draft_order_id' => 'uuid',
         'recipient_message' => null,
         'is_gift' => null,
-        'simulated_order' => null
+        'simulated_order' => null,
+        'is_no_date_committed' => null,
+        'external_data' => null
     ];
 
     /**
@@ -115,7 +119,9 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'draft_order_id' => false,
         'recipient_message' => false,
         'is_gift' => false,
-        'simulated_order' => false
+        'simulated_order' => false,
+        'is_no_date_committed' => false,
+        'external_data' => false
     ];
 
     /**
@@ -216,7 +222,9 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'draft_order_id' => 'draftOrderId',
         'recipient_message' => 'recipientMessage',
         'is_gift' => 'isGift',
-        'simulated_order' => 'simulatedOrder'
+        'simulated_order' => 'simulatedOrder',
+        'is_no_date_committed' => 'isNoDateCommitted',
+        'external_data' => 'externalData'
     ];
 
     /**
@@ -237,7 +245,9 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'draft_order_id' => 'setDraftOrderId',
         'recipient_message' => 'setRecipientMessage',
         'is_gift' => 'setIsGift',
-        'simulated_order' => 'setSimulatedOrder'
+        'simulated_order' => 'setSimulatedOrder',
+        'is_no_date_committed' => 'setIsNoDateCommitted',
+        'external_data' => 'setExternalData'
     ];
 
     /**
@@ -258,7 +268,9 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'draft_order_id' => 'getDraftOrderId',
         'recipient_message' => 'getRecipientMessage',
         'is_gift' => 'getIsGift',
-        'simulated_order' => 'getSimulatedOrder'
+        'simulated_order' => 'getSimulatedOrder',
+        'is_no_date_committed' => 'getIsNoDateCommitted',
+        'external_data' => 'getExternalData'
     ];
 
     /**
@@ -352,6 +364,8 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recipient_message', $data ?? [], null);
         $this->setIfExists('is_gift', $data ?? [], false);
         $this->setIfExists('simulated_order', $data ?? [], false);
+        $this->setIfExists('is_no_date_committed', $data ?? [], false);
+        $this->setIfExists('external_data', $data ?? [], null);
     }
 
     /**
@@ -540,7 +554,7 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sender_contact_details
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails|null
+     * @return \OpenAPI\Client\Model\OrderPostRequestSenderContactDetails|null
      */
     public function getSenderContactDetails()
     {
@@ -550,7 +564,7 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sender_contact_details
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails|null $sender_contact_details sender_contact_details
+     * @param \OpenAPI\Client\Model\OrderPostRequestSenderContactDetails|null $sender_contact_details sender_contact_details
      *
      * @return self
      */
@@ -758,6 +772,60 @@ class OrderPostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable simulated_order cannot be null');
         }
         $this->container['simulated_order'] = $simulated_order;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_no_date_committed
+     *
+     * @return bool|null
+     */
+    public function getIsNoDateCommitted()
+    {
+        return $this->container['is_no_date_committed'];
+    }
+
+    /**
+     * Sets is_no_date_committed
+     *
+     * @param bool|null $is_no_date_committed Whether this order is a no date commited order
+     *
+     * @return self
+     */
+    public function setIsNoDateCommitted($is_no_date_committed)
+    {
+        if (is_null($is_no_date_committed)) {
+            throw new \InvalidArgumentException('non-nullable is_no_date_committed cannot be null');
+        }
+        $this->container['is_no_date_committed'] = $is_no_date_committed;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_data
+     *
+     * @return \OpenAPI\Client\Model\OrderPostRequestExternalData|null
+     */
+    public function getExternalData()
+    {
+        return $this->container['external_data'];
+    }
+
+    /**
+     * Sets external_data
+     *
+     * @param \OpenAPI\Client\Model\OrderPostRequestExternalData|null $external_data external_data
+     *
+     * @return self
+     */
+    public function setExternalData($external_data)
+    {
+        if (is_null($external_data)) {
+            throw new \InvalidArgumentException('non-nullable external_data cannot be null');
+        }
+        $this->container['external_data'] = $external_data;
 
         return $this;
     }

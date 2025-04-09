@@ -59,7 +59,7 @@ class OrdersPaginatedHistoryGet200Response implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'results' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]',
+        'results' => '\OpenAPI\Client\Model\OrdersGet200ResponseInner[]',
         'last_timestamp' => '\DateTime',
         'last_id' => 'string'
     ];
@@ -317,7 +317,7 @@ class OrdersPaginatedHistoryGet200Response implements ModelInterface, ArrayAcces
     /**
      * Gets results
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[]
+     * @return \OpenAPI\Client\Model\OrdersGet200ResponseInner[]
      */
     public function getResults()
     {
@@ -327,7 +327,7 @@ class OrdersPaginatedHistoryGet200Response implements ModelInterface, ArrayAcces
     /**
      * Sets results
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInner[] $results results
+     * @param \OpenAPI\Client\Model\OrdersGet200ResponseInner[] $results results
      *
      * @return self
      */

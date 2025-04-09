@@ -64,8 +64,9 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         'external_order_id' => 'string',
         'extended_liability_coverage_cents' => 'int',
         'is_gift' => 'bool',
-        'sender_contact_details' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails',
-        'recipient_message' => 'string'
+        'sender_contact_details' => '\OpenAPI\Client\Model\OrderPostRequestSenderContactDetails',
+        'recipient_message' => 'string',
+        'color' => 'string'
     ];
 
     /**
@@ -82,7 +83,8 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         'extended_liability_coverage_cents' => 'int64',
         'is_gift' => null,
         'sender_contact_details' => null,
-        'recipient_message' => null
+        'recipient_message' => null,
+        'color' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         'extended_liability_coverage_cents' => false,
         'is_gift' => false,
         'sender_contact_details' => false,
-        'recipient_message' => false
+        'recipient_message' => false,
+        'color' => false
     ];
 
     /**
@@ -192,7 +195,8 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         'extended_liability_coverage_cents' => 'extendedLiabilityCoverageCents',
         'is_gift' => 'isGift',
         'sender_contact_details' => 'senderContactDetails',
-        'recipient_message' => 'recipientMessage'
+        'recipient_message' => 'recipientMessage',
+        'color' => 'color'
     ];
 
     /**
@@ -207,7 +211,8 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         'extended_liability_coverage_cents' => 'setExtendedLiabilityCoverageCents',
         'is_gift' => 'setIsGift',
         'sender_contact_details' => 'setSenderContactDetails',
-        'recipient_message' => 'setRecipientMessage'
+        'recipient_message' => 'setRecipientMessage',
+        'color' => 'setColor'
     ];
 
     /**
@@ -222,7 +227,8 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         'extended_liability_coverage_cents' => 'getExtendedLiabilityCoverageCents',
         'is_gift' => 'getIsGift',
         'sender_contact_details' => 'getSenderContactDetails',
-        'recipient_message' => 'getRecipientMessage'
+        'recipient_message' => 'getRecipientMessage',
+        'color' => 'getColor'
     ];
 
     /**
@@ -289,6 +295,7 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         $this->setIfExists('is_gift', $data ?? [], false);
         $this->setIfExists('sender_contact_details', $data ?? [], null);
         $this->setIfExists('recipient_message', $data ?? [], null);
+        $this->setIfExists('color', $data ?? [], null);
     }
 
     /**
@@ -321,6 +328,10 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
+        if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
+            $invalidProperties[] = "invalid value for 'color', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
+        }
+
         return $invalidProperties;
     }
 
@@ -474,7 +485,7 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
     /**
      * Gets sender_contact_details
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails|null
+     * @return \OpenAPI\Client\Model\OrderPostRequestSenderContactDetails|null
      */
     public function getSenderContactDetails()
     {
@@ -484,7 +495,7 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
     /**
      * Sets sender_contact_details
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails|null $sender_contact_details sender_contact_details
+     * @param \OpenAPI\Client\Model\OrderPostRequestSenderContactDetails|null $sender_contact_details sender_contact_details
      *
      * @return self
      */
@@ -521,6 +532,38 @@ class OrderMultiRoutePostRequestAdditionalDropoffInfoInner implements ModelInter
             throw new \InvalidArgumentException('non-nullable recipient_message cannot be null');
         }
         $this->container['recipient_message'] = $recipient_message;
+
+        return $this;
+    }
+
+    /**
+     * Gets color
+     *
+     * @return string|null
+     */
+    public function getColor()
+    {
+        return $this->container['color'];
+    }
+
+    /**
+     * Sets color
+     *
+     * @param string|null $color The hex color of the route
+     *
+     * @return self
+     */
+    public function setColor($color)
+    {
+        if (is_null($color)) {
+            throw new \InvalidArgumentException('non-nullable color cannot be null');
+        }
+
+        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($color)))) {
+            throw new \InvalidArgumentException("invalid value for \$color when calling OrderMultiRoutePostRequestAdditionalDropoffInfoInner., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
+        }
+
+        $this->container['color'] = $color;
 
         return $this;
     }

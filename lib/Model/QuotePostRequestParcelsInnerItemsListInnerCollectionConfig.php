@@ -62,7 +62,9 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         'schedule' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfigSchedule',
         'preparation_config' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfigPreparationConfig',
         'blackout_dates' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfigBlackoutDatesInner[]',
-        'max_days_in_hub' => 'int'
+        'max_days_in_hub' => 'int',
+        'allow_nationwide' => 'bool',
+        'allow_nationwide_remote' => 'bool'
     ];
 
     /**
@@ -76,7 +78,9 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         'schedule' => null,
         'preparation_config' => null,
         'blackout_dates' => null,
-        'max_days_in_hub' => null
+        'max_days_in_hub' => null,
+        'allow_nationwide' => null,
+        'allow_nationwide_remote' => null
     ];
 
     /**
@@ -88,7 +92,9 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         'schedule' => false,
         'preparation_config' => false,
         'blackout_dates' => false,
-        'max_days_in_hub' => false
+        'max_days_in_hub' => false,
+        'allow_nationwide' => false,
+        'allow_nationwide_remote' => false
     ];
 
     /**
@@ -180,7 +186,9 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         'schedule' => 'schedule',
         'preparation_config' => 'preparationConfig',
         'blackout_dates' => 'blackoutDates',
-        'max_days_in_hub' => 'maxDaysInHub'
+        'max_days_in_hub' => 'maxDaysInHub',
+        'allow_nationwide' => 'allowNationwide',
+        'allow_nationwide_remote' => 'allowNationwideRemote'
     ];
 
     /**
@@ -192,7 +200,9 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         'schedule' => 'setSchedule',
         'preparation_config' => 'setPreparationConfig',
         'blackout_dates' => 'setBlackoutDates',
-        'max_days_in_hub' => 'setMaxDaysInHub'
+        'max_days_in_hub' => 'setMaxDaysInHub',
+        'allow_nationwide' => 'setAllowNationwide',
+        'allow_nationwide_remote' => 'setAllowNationwideRemote'
     ];
 
     /**
@@ -204,7 +214,9 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         'schedule' => 'getSchedule',
         'preparation_config' => 'getPreparationConfig',
         'blackout_dates' => 'getBlackoutDates',
-        'max_days_in_hub' => 'getMaxDaysInHub'
+        'max_days_in_hub' => 'getMaxDaysInHub',
+        'allow_nationwide' => 'getAllowNationwide',
+        'allow_nationwide_remote' => 'getAllowNationwideRemote'
     ];
 
     /**
@@ -268,6 +280,8 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
         $this->setIfExists('preparation_config', $data ?? [], null);
         $this->setIfExists('blackout_dates', $data ?? [], null);
         $this->setIfExists('max_days_in_hub', $data ?? [], null);
+        $this->setIfExists('allow_nationwide', $data ?? [], null);
+        $this->setIfExists('allow_nationwide_remote', $data ?? [], null);
     }
 
     /**
@@ -416,6 +430,60 @@ class QuotePostRequestParcelsInnerItemsListInnerCollectionConfig implements Mode
             throw new \InvalidArgumentException('non-nullable max_days_in_hub cannot be null');
         }
         $this->container['max_days_in_hub'] = $max_days_in_hub;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow_nationwide
+     *
+     * @return bool|null
+     */
+    public function getAllowNationwide()
+    {
+        return $this->container['allow_nationwide'];
+    }
+
+    /**
+     * Sets allow_nationwide
+     *
+     * @param bool|null $allow_nationwide Whether to allow nationwide collections
+     *
+     * @return self
+     */
+    public function setAllowNationwide($allow_nationwide)
+    {
+        if (is_null($allow_nationwide)) {
+            throw new \InvalidArgumentException('non-nullable allow_nationwide cannot be null');
+        }
+        $this->container['allow_nationwide'] = $allow_nationwide;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow_nationwide_remote
+     *
+     * @return bool|null
+     */
+    public function getAllowNationwideRemote()
+    {
+        return $this->container['allow_nationwide_remote'];
+    }
+
+    /**
+     * Sets allow_nationwide_remote
+     *
+     * @param bool|null $allow_nationwide_remote Whether to allow nationwide remote collections
+     *
+     * @return self
+     */
+    public function setAllowNationwideRemote($allow_nationwide_remote)
+    {
+        if (is_null($allow_nationwide_remote)) {
+            throw new \InvalidArgumentException('non-nullable allow_nationwide_remote cannot be null');
+        }
+        $this->container['allow_nationwide_remote'] = $allow_nationwide_remote;
 
         return $this;
     }

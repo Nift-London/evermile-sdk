@@ -6,12 +6,6 @@ For more information, please visit [https://www.evermile.io](https://www.evermil
 
 ## Installation & Usage
 
-## Generating new version
-
-```
-openapi-generator generate -i oapi.yaml -g php -o ./
-```
-
 ### Requirements
 
 PHP 7.4 and later.
@@ -63,21 +57,21 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToke
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new OpenAPI\Client\Api\GDPRApi(
+$apiInstance = new OpenAPI\Client\Api\DraftsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$type = 'type_example'; // string
-$gdpr_customer_post_request = new \OpenAPI\Client\Model\GdprCustomerPostRequest(); // \OpenAPI\Client\Model\GdprCustomerPostRequest
+$draft_orders_delete_request = new \OpenAPI\Client\Model\DraftOrdersDeleteRequest(); // \OpenAPI\Client\Model\DraftOrdersDeleteRequest
 $x_evermile_merchant_id = 'x_evermile_merchant_id_example'; // string | The merchant ID, if using a client credentials token. Will be ignored with a regular user token.
 $x_evermile_trace_id = 'x_evermile_trace_id_example'; // string | A trace ID for tracing the request through the Evermile platform
+$x_evermile_store_id = 'x_evermile_store_id_example'; // string | A store ID for an order's store platform context
 
 try {
-    $apiInstance->gdprCustomerPost($type, $gdpr_customer_post_request, $x_evermile_merchant_id, $x_evermile_trace_id);
+    $apiInstance->draftOrdersDelete($draft_orders_delete_request, $x_evermile_merchant_id, $x_evermile_trace_id, $x_evermile_store_id);
 } catch (Exception $e) {
-    echo 'Exception when calling GDPRApi->gdprCustomerPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DraftsApi->draftOrdersDelete: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -88,11 +82,14 @@ All URIs are relative to *https://api.prod.evermile.io/v1/commercial*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DraftsApi* | [**draftOrdersDelete**](docs/Api/DraftsApi.md#draftordersdelete) | **DELETE** /draft_orders | Delete a list of draft orders
+*DraftsApi* | [**draftOrdersDraftOrderIdGet**](docs/Api/DraftsApi.md#draftordersdraftorderidget) | **GET** /draft_orders/{draftOrderId} | Retrieve a draft order
+*DraftsApi* | [**draftOrdersGet**](docs/Api/DraftsApi.md#draftordersget) | **GET** /draft_orders | Retrieve all draft orders
+*DraftsApi* | [**draftOrdersPost**](docs/Api/DraftsApi.md#draftorderspost) | **POST** /draft_orders | Save a draft order
 *GDPRApi* | [**gdprCustomerPost**](docs/Api/GDPRApi.md#gdprcustomerpost) | **POST** /gdpr/customer | Customer data request
 *GDPRApi* | [**gdprMerchantPost**](docs/Api/GDPRApi.md#gdprmerchantpost) | **POST** /gdpr/merchant | Merchant data request
-*LocationsApi* | [**senderInfoPut**](docs/Api/LocationsApi.md#senderinfoput) | **PUT** /sender_info | Create or update a delivery location.
-*LocationsApi* | [**senderInfoSenderInfoIdDelete**](docs/Api/LocationsApi.md#senderinfosenderinfoiddelete) | **DELETE** /sender_info/{senderInfoId} | Delete a delivery location.
-*LocationsApi* | [**senderInfosGet**](docs/Api/LocationsApi.md#senderinfosget) | **GET** /sender_infos | Get sender and location infos
+*MyDriversApi* | [**myDriversDraftsGet**](docs/Api/MyDriversApi.md#mydriversdraftsget) | **GET** /myDrivers/drafts | Retrieve all My Drivers draft orders
+*MyDriversApi* | [**myDriversDraftsPost**](docs/Api/MyDriversApi.md#mydriversdraftspost) | **POST** /myDrivers/drafts | Save a My Drivers draft order
 *OrdersApi* | [**orderMultiRoutePost**](docs/Api/OrdersApi.md#ordermultiroutepost) | **POST** /order/multiRoute | Order a route with multiple orders
 *OrdersApi* | [**orderOrderIdDelete**](docs/Api/OrdersApi.md#orderorderiddelete) | **DELETE** /order/{orderId} | Cancel an order
 *OrdersApi* | [**orderOrderIdGet**](docs/Api/OrdersApi.md#orderorderidget) | **GET** /order/{orderId} | Fetch order details
@@ -115,6 +112,16 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [DraftOrdersDeleteRequest](docs/Model/DraftOrdersDeleteRequest.md)
+- [DraftOrdersGet200Response](docs/Model/DraftOrdersGet200Response.md)
+- [DraftOrdersGet200ResponseDraftsInner](docs/Model/DraftOrdersGet200ResponseDraftsInner.md)
+- [DraftOrdersGet200ResponseDraftsInnerDestinationLocationsInner](docs/Model/DraftOrdersGet200ResponseDraftsInnerDestinationLocationsInner.md)
+- [DraftOrdersGet200ResponseDraftsInnerDropoffContactDetails](docs/Model/DraftOrdersGet200ResponseDraftsInnerDropoffContactDetails.md)
+- [DraftOrdersGet200ResponseDraftsInnerParcelsInner](docs/Model/DraftOrdersGet200ResponseDraftsInnerParcelsInner.md)
+- [DraftOrdersGet200ResponseDraftsInnerParcelsInnerDimensions](docs/Model/DraftOrdersGet200ResponseDraftsInnerParcelsInnerDimensions.md)
+- [DraftOrdersGet200ResponseDraftsInnerParcelsInnerItemsListInner](docs/Model/DraftOrdersGet200ResponseDraftsInnerParcelsInnerItemsListInner.md)
+- [DraftOrdersGet200ResponseDraftsInnerPickupContactDetails](docs/Model/DraftOrdersGet200ResponseDraftsInnerPickupContactDetails.md)
+- [DraftOrdersPostRequest](docs/Model/DraftOrdersPostRequest.md)
 - [GdprCustomerPostRequest](docs/Model/GdprCustomerPostRequest.md)
 - [LocationPut200Response](docs/Model/LocationPut200Response.md)
 - [LocationPutRequest](docs/Model/LocationPutRequest.md)
@@ -124,6 +131,7 @@ Class | Method | HTTP request | Description
 - [LocationsGet200ResponseLocationsInnerAllOfDeliveryConfig](docs/Model/LocationsGet200ResponseLocationsInnerAllOfDeliveryConfig.md)
 - [LocationsGet200ResponseLocationsInnerAllOfSchedule](docs/Model/LocationsGet200ResponseLocationsInnerAllOfSchedule.md)
 - [LocationsGet200ResponseLocationsInnerAllOfScheduleMonday](docs/Model/LocationsGet200ResponseLocationsInnerAllOfScheduleMonday.md)
+- [MyDriversDraftsPostRequest](docs/Model/MyDriversDraftsPostRequest.md)
 - [OrderMultiRoutePost201Response](docs/Model/OrderMultiRoutePost201Response.md)
 - [OrderMultiRoutePost201ResponseRoutesInner](docs/Model/OrderMultiRoutePost201ResponseRoutesInner.md)
 - [OrderMultiRoutePostRequest](docs/Model/OrderMultiRoutePostRequest.md)
@@ -136,25 +144,29 @@ Class | Method | HTTP request | Description
 - [OrderPost201ResponseCostBreakdownInnerLiabilityInfo](docs/Model/OrderPost201ResponseCostBreakdownInnerLiabilityInfo.md)
 - [OrderPost201ResponseCostBreakdownInnerWaiverDetails](docs/Model/OrderPost201ResponseCostBreakdownInnerWaiverDetails.md)
 - [OrderPost201ResponseCourierLocation](docs/Model/OrderPost201ResponseCourierLocation.md)
+- [OrderPost201ResponseCustomer](docs/Model/OrderPost201ResponseCustomer.md)
+- [OrderPost201ResponseEditInfo](docs/Model/OrderPost201ResponseEditInfo.md)
 - [OrderPost201ResponseHappiness](docs/Model/OrderPost201ResponseHappiness.md)
+- [OrderPost201ResponseOrderTrackingInfo](docs/Model/OrderPost201ResponseOrderTrackingInfo.md)
+- [OrderPost201ResponseOrderTrackingInfoAllOfCollectionBarcodesInfo](docs/Model/OrderPost201ResponseOrderTrackingInfoAllOfCollectionBarcodesInfo.md)
+- [OrderPost201ResponseOrderTrackingInfoAllOfCollectionBarcodesInfoRequiredBarcodesInner](docs/Model/OrderPost201ResponseOrderTrackingInfoAllOfCollectionBarcodesInfoRequiredBarcodesInner.md)
 - [OrderPost201ResponseParcelsInner](docs/Model/OrderPost201ResponseParcelsInner.md)
+- [OrderPost201ResponseProofOfCollectionInner](docs/Model/OrderPost201ResponseProofOfCollectionInner.md)
+- [OrderPost201ResponseProperties](docs/Model/OrderPost201ResponseProperties.md)
+- [OrderPost201ResponseRouteInfo](docs/Model/OrderPost201ResponseRouteInfo.md)
+- [OrderPost201ResponseScheduleInfo](docs/Model/OrderPost201ResponseScheduleInfo.md)
+- [OrderPost201ResponseScheduleInfoScheduleDetails](docs/Model/OrderPost201ResponseScheduleInfoScheduleDetails.md)
+- [OrderPost201ResponseScheduleInfoScheduleDetailsWeekdaysInner](docs/Model/OrderPost201ResponseScheduleInfoScheduleDetailsWeekdaysInner.md)
+- [OrderPost201ResponseStatus](docs/Model/OrderPost201ResponseStatus.md)
 - [OrderPostRequest](docs/Model/OrderPostRequest.md)
 - [OrderPostRequestDropoffContactDetails](docs/Model/OrderPostRequestDropoffContactDetails.md)
+- [OrderPostRequestExternalData](docs/Model/OrderPostRequestExternalData.md)
 - [OrderPostRequestPickupContactDetails](docs/Model/OrderPostRequestPickupContactDetails.md)
+- [OrderPostRequestSenderContactDetails](docs/Model/OrderPostRequestSenderContactDetails.md)
+- [OrdersGet200ResponseInner](docs/Model/OrdersGet200ResponseInner.md)
+- [OrdersGet200ResponseInnerDropoffGeoLocation](docs/Model/OrdersGet200ResponseInnerDropoffGeoLocation.md)
+- [OrdersGet200ResponseInnerPickupWindow](docs/Model/OrdersGet200ResponseInnerPickupWindow.md)
 - [OrdersPaginatedHistoryGet200Response](docs/Model/OrdersPaginatedHistoryGet200Response.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInner](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInner.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerDropoffGeoLocation](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerDropoffGeoLocation.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerEditInfo](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerEditInfo.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerPickupWindow](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerPickupWindow.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerRouteInfo](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerRouteInfo.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfo](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfo.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfoScheduleDetails](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfoScheduleDetails.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfoScheduleDetailsWeekdaysInner](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfoScheduleDetailsWeekdaysInner.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails.md)
-- [OrdersPaginatedHistoryGet200ResponseResultsInnerStatus](docs/Model/OrdersPaginatedHistoryGet200ResponseResultsInnerStatus.md)
 - [ProposalProposalIdGet200Response](docs/Model/ProposalProposalIdGet200Response.md)
 - [QuoteMultiRoutePost200Response](docs/Model/QuoteMultiRoutePost200Response.md)
 - [QuoteMultiRoutePost200ResponseProposalsInner](docs/Model/QuoteMultiRoutePost200ResponseProposalsInner.md)
@@ -178,10 +190,6 @@ Class | Method | HTTP request | Description
 - [QuotePost200ResponseDateProposalsInnerErrorReason](docs/Model/QuotePost200ResponseDateProposalsInnerErrorReason.md)
 - [QuotePost200ResponseDateProposalsInnerProposalsInner](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInner.md)
 - [QuotePost200ResponseDateProposalsInnerProposalsInnerProposal](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposal.md)
-- [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo.md)
-- [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfoContactInfo](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfoContactInfo.md)
-- [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfoContactInfoAddress](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfoContactInfoAddress.md)
-- [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfoHandoffTime](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfoHandoffTime.md)
 - [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalOrigin](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalOrigin.md)
 - [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalOriginGeoLocation](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalOriginGeoLocation.md)
 - [QuotePost200ResponseDateProposalsInnerProposalsInnerProposalSpecificLiabilityCoverage](docs/Model/QuotePost200ResponseDateProposalsInnerProposalsInnerProposalSpecificLiabilityCoverage.md)
@@ -198,6 +206,7 @@ Class | Method | HTTP request | Description
 - [QuotePostRequestParcelsInnerItemsListInnerCollectionConfigPreparationConfigPreparationTime](docs/Model/QuotePostRequestParcelsInnerItemsListInnerCollectionConfigPreparationConfigPreparationTime.md)
 - [QuotePostRequestParcelsInnerItemsListInnerCollectionConfigSchedule](docs/Model/QuotePostRequestParcelsInnerItemsListInnerCollectionConfigSchedule.md)
 - [QuotePostRequestParcelsInnerItemsListInnerCollectionConfigScheduleMonday](docs/Model/QuotePostRequestParcelsInnerItemsListInnerCollectionConfigScheduleMonday.md)
+- [QuotePostRequestParcelsInnerItemsListInnerExternalData](docs/Model/QuotePostRequestParcelsInnerItemsListInnerExternalData.md)
 - [QuotePostRequestParcelsInnerItemsListInnerValue](docs/Model/QuotePostRequestParcelsInnerItemsListInnerValue.md)
 - [QuotePostRequestParcelsInnerItemsListInnerValueDiscount](docs/Model/QuotePostRequestParcelsInnerItemsListInnerValueDiscount.md)
 - [QuotePostRequestPickupInfo](docs/Model/QuotePostRequestPickupInfo.md)

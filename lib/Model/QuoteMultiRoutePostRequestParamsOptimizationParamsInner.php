@@ -300,6 +300,9 @@ class QuoteMultiRoutePostRequestParamsOptimizationParamsInner implements ModelIn
     public const CARRIER_DHL = 'DHL';
     public const CARRIER_EVERMILE_OWN_FLEET = 'EvermileOwnFleet';
     public const CARRIER_GO_PANDA = 'GoPanda';
+    public const CARRIER_FLICK_FIRST = 'FlickFirst';
+    public const CARRIER_ADDISON_LEE = 'AddisonLee';
+    public const CARRIER_GIDL = 'Gidl';
 
     /**
      * Gets allowable values of the enum
@@ -331,6 +334,9 @@ class QuoteMultiRoutePostRequestParamsOptimizationParamsInner implements ModelIn
             self::CARRIER_DHL,
             self::CARRIER_EVERMILE_OWN_FLEET,
             self::CARRIER_GO_PANDA,
+            self::CARRIER_FLICK_FIRST,
+            self::CARRIER_ADDISON_LEE,
+            self::CARRIER_GIDL,
         ];
     }
 

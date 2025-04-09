@@ -63,7 +63,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'external_order_id' => 'string',
         'store_id' => 'string',
         'store_name' => 'string',
-        'status' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerStatus',
+        'status' => '\OpenAPI\Client\Model\OrderPost201ResponseStatus',
         'communicated_pickup' => '\OpenAPI\Client\Model\QuotePostRequestDestinationLocationsInnerDeliverySlot',
         'communicated_dropoff' => '\OpenAPI\Client\Model\QuotePostRequestDestinationLocationsInnerDeliverySlot',
         'actual_pickup' => '\DateTime',
@@ -71,9 +71,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'pickup_eta' => '\DateTime',
         'dropoff_eta' => '\DateTime',
         'courier_location' => '\OpenAPI\Client\Model\OrderPost201ResponseCourierLocation',
+        'pickup_location_id' => 'string',
         'origin' => '\OpenAPI\Client\Model\QuotePostRequestPickupInfoOneOf1InnerAddress',
         'destination' => '\OpenAPI\Client\Model\QuotePostRequestPickupInfoOneOf1InnerAddress',
-        'customer' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer',
+        'customer' => '\OpenAPI\Client\Model\OrderPost201ResponseCustomer',
         'delivery_company' => 'string',
         'parcels' => '\OpenAPI\Client\Model\OrderPost201ResponseParcelsInner[]',
         'value' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerValue',
@@ -84,12 +85,11 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'tracking_url' => 'string',
         'customer_tracking_url' => 'string',
         'sender_tracking_url' => 'string',
-        'order_tracking_info' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo',
-        'handoff_type' => 'string',
-        'handoff_info' => '\OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo',
+        'order_tracking_info' => '\OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo',
         'used_credits' => 'bool',
-        'proof_of_collection' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner[]',
-        'proof_of_delivery' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner[]',
+        'proof_of_collection' => '\OpenAPI\Client\Model\OrderPost201ResponseProofOfCollectionInner[]',
+        'proof_of_delivery' => '\OpenAPI\Client\Model\OrderPost201ResponseProofOfCollectionInner[]',
+        'pu_notes' => 'string[]',
         'notes' => 'string[]',
         'merchant_name' => 'string',
         'label_required' => 'bool',
@@ -102,25 +102,31 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'actual_vehicle_type' => 'string',
         'cost_breakdown' => '\OpenAPI\Client\Model\OrderPost201ResponseCostBreakdownInner[]',
         'total_value' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerValue',
-        'pickup_contact_info' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer',
+        'pickup_contact_info' => '\OpenAPI\Client\Model\OrderPost201ResponseCustomer',
         'proposal_types' => 'string[]',
-        'sender_contact_details' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails',
+        'sender_contact_details' => '\OpenAPI\Client\Model\OrderPostRequestSenderContactDetails',
         'is_gift' => 'bool',
         'recipient_message' => 'string',
         'additional_properties' => 'array<string,mixed>',
         'route_order_index' => 'int',
-        'route_info' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerRouteInfo',
+        'route_info' => '\OpenAPI\Client\Model\OrderPost201ResponseRouteInfo',
         'estimated_pickup_within_store_hours' => 'bool',
         'requested_sla' => 'string',
-        'schedule_info' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfo',
+        'schedule_info' => '\OpenAPI\Client\Model\OrderPost201ResponseScheduleInfo',
         'extra_external_ids' => 'string[]',
         'is_return' => 'bool',
         'simulated_order' => 'bool',
         'happiness' => '\OpenAPI\Client\Model\OrderPost201ResponseHappiness',
-        'edit_info' => '\OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerEditInfo',
+        'edit_info' => '\OpenAPI\Client\Model\OrderPost201ResponseEditInfo',
         'proposal_label' => 'string',
         'is_nationwide' => 'bool',
-        'carrier_delivery_url' => 'string'
+        'carrier_delivery_url' => 'string',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'properties' => '\OpenAPI\Client\Model\OrderPost201ResponseProperties',
+        'ecom_order_id' => 'string',
+        'overnight_type' => 'string',
+        'origin_draft_id' => 'string'
     ];
 
     /**
@@ -143,6 +149,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'pickup_eta' => 'date-time',
         'dropoff_eta' => 'date-time',
         'courier_location' => null,
+        'pickup_location_id' => 'uuid',
         'origin' => null,
         'destination' => null,
         'customer' => null,
@@ -157,11 +164,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer_tracking_url' => null,
         'sender_tracking_url' => null,
         'order_tracking_info' => null,
-        'handoff_type' => null,
-        'handoff_info' => null,
         'used_credits' => null,
         'proof_of_collection' => null,
         'proof_of_delivery' => null,
+        'pu_notes' => null,
         'notes' => null,
         'merchant_name' => null,
         'label_required' => null,
@@ -192,7 +198,13 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'edit_info' => null,
         'proposal_label' => null,
         'is_nationwide' => null,
-        'carrier_delivery_url' => 'url'
+        'carrier_delivery_url' => 'url',
+        'created_at' => 'date-time',
+        'updated_at' => 'date-time',
+        'properties' => null,
+        'ecom_order_id' => null,
+        'overnight_type' => null,
+        'origin_draft_id' => null
     ];
 
     /**
@@ -213,6 +225,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'pickup_eta' => false,
         'dropoff_eta' => false,
         'courier_location' => false,
+        'pickup_location_id' => false,
         'origin' => false,
         'destination' => false,
         'customer' => false,
@@ -227,11 +240,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer_tracking_url' => false,
         'sender_tracking_url' => false,
         'order_tracking_info' => false,
-        'handoff_type' => false,
-        'handoff_info' => false,
         'used_credits' => false,
         'proof_of_collection' => false,
         'proof_of_delivery' => false,
+        'pu_notes' => false,
         'notes' => false,
         'merchant_name' => false,
         'label_required' => false,
@@ -262,7 +274,13 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'edit_info' => false,
         'proposal_label' => false,
         'is_nationwide' => false,
-        'carrier_delivery_url' => false
+        'carrier_delivery_url' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        'properties' => false,
+        'ecom_order_id' => false,
+        'overnight_type' => false,
+        'origin_draft_id' => false
     ];
 
     /**
@@ -363,6 +381,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'pickup_eta' => 'pickupEta',
         'dropoff_eta' => 'dropoffEta',
         'courier_location' => 'courierLocation',
+        'pickup_location_id' => 'pickupLocationId',
         'origin' => 'origin',
         'destination' => 'destination',
         'customer' => 'customer',
@@ -377,11 +396,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer_tracking_url' => 'customerTrackingUrl',
         'sender_tracking_url' => 'senderTrackingUrl',
         'order_tracking_info' => 'orderTrackingInfo',
-        'handoff_type' => 'handoffType',
-        'handoff_info' => 'handoffInfo',
         'used_credits' => 'usedCredits',
         'proof_of_collection' => 'proofOfCollection',
         'proof_of_delivery' => 'proofOfDelivery',
+        'pu_notes' => 'pu_notes',
         'notes' => 'notes',
         'merchant_name' => 'merchantName',
         'label_required' => 'labelRequired',
@@ -412,7 +430,13 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'edit_info' => 'editInfo',
         'proposal_label' => 'proposalLabel',
         'is_nationwide' => 'isNationwide',
-        'carrier_delivery_url' => 'carrierDeliveryUrl'
+        'carrier_delivery_url' => 'carrierDeliveryUrl',
+        'created_at' => 'createdAt',
+        'updated_at' => 'updatedAt',
+        'properties' => 'properties',
+        'ecom_order_id' => 'ecomOrderId',
+        'overnight_type' => 'overnightType',
+        'origin_draft_id' => 'originDraftId'
     ];
 
     /**
@@ -433,6 +457,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'pickup_eta' => 'setPickupEta',
         'dropoff_eta' => 'setDropoffEta',
         'courier_location' => 'setCourierLocation',
+        'pickup_location_id' => 'setPickupLocationId',
         'origin' => 'setOrigin',
         'destination' => 'setDestination',
         'customer' => 'setCustomer',
@@ -447,11 +472,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer_tracking_url' => 'setCustomerTrackingUrl',
         'sender_tracking_url' => 'setSenderTrackingUrl',
         'order_tracking_info' => 'setOrderTrackingInfo',
-        'handoff_type' => 'setHandoffType',
-        'handoff_info' => 'setHandoffInfo',
         'used_credits' => 'setUsedCredits',
         'proof_of_collection' => 'setProofOfCollection',
         'proof_of_delivery' => 'setProofOfDelivery',
+        'pu_notes' => 'setPuNotes',
         'notes' => 'setNotes',
         'merchant_name' => 'setMerchantName',
         'label_required' => 'setLabelRequired',
@@ -482,7 +506,13 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'edit_info' => 'setEditInfo',
         'proposal_label' => 'setProposalLabel',
         'is_nationwide' => 'setIsNationwide',
-        'carrier_delivery_url' => 'setCarrierDeliveryUrl'
+        'carrier_delivery_url' => 'setCarrierDeliveryUrl',
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt',
+        'properties' => 'setProperties',
+        'ecom_order_id' => 'setEcomOrderId',
+        'overnight_type' => 'setOvernightType',
+        'origin_draft_id' => 'setOriginDraftId'
     ];
 
     /**
@@ -503,6 +533,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'pickup_eta' => 'getPickupEta',
         'dropoff_eta' => 'getDropoffEta',
         'courier_location' => 'getCourierLocation',
+        'pickup_location_id' => 'getPickupLocationId',
         'origin' => 'getOrigin',
         'destination' => 'getDestination',
         'customer' => 'getCustomer',
@@ -517,11 +548,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'customer_tracking_url' => 'getCustomerTrackingUrl',
         'sender_tracking_url' => 'getSenderTrackingUrl',
         'order_tracking_info' => 'getOrderTrackingInfo',
-        'handoff_type' => 'getHandoffType',
-        'handoff_info' => 'getHandoffInfo',
         'used_credits' => 'getUsedCredits',
         'proof_of_collection' => 'getProofOfCollection',
         'proof_of_delivery' => 'getProofOfDelivery',
+        'pu_notes' => 'getPuNotes',
         'notes' => 'getNotes',
         'merchant_name' => 'getMerchantName',
         'label_required' => 'getLabelRequired',
@@ -552,7 +582,13 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         'edit_info' => 'getEditInfo',
         'proposal_label' => 'getProposalLabel',
         'is_nationwide' => 'getIsNationwide',
-        'carrier_delivery_url' => 'getCarrierDeliveryUrl'
+        'carrier_delivery_url' => 'getCarrierDeliveryUrl',
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt',
+        'properties' => 'getProperties',
+        'ecom_order_id' => 'getEcomOrderId',
+        'overnight_type' => 'getOvernightType',
+        'origin_draft_id' => 'getOriginDraftId'
     ];
 
     /**
@@ -612,9 +648,6 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     public const PROOF_OF_DELIVERY_REQUIREMENT_PHOTO_ID = 'photoId';
     public const PROOF_OF_DELIVERY_REQUIREMENT_ANY = 'any';
     public const PROOF_OF_DELIVERY_REQUIREMENT_NONE = 'none';
-    public const HANDOFF_TYPE_NONE = 'none';
-    public const HANDOFF_TYPE_RECEIVE = 'receive';
-    public const HANDOFF_TYPE_HANDOFF = 'handoff';
     public const DELIVERY_METHOD_DELIVERY = 'delivery';
     public const DELIVERY_METHOD_STORE_PICKUP = 'storePickup';
     public const EXPECTED_VEHICLE_TYPE_PUSHBIKE = 'pushbike';
@@ -638,6 +671,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     public const PROPOSAL_TYPES_STORE_PICKUP = 'storePickup';
     public const PROPOSAL_TYPES_OWN_FLEET = 'ownFleet';
     public const PROPOSAL_TYPES_COLLECTION_POINT = 'CollectionPoint';
+    public const PROPOSAL_TYPES_PREMIUM = 'Premium';
     public const REQUESTED_SLA_EXPRESS = 'express';
     public const REQUESTED_SLA_SAME_DAY = 'sameDay';
     public const REQUESTED_SLA_NEXT_DAY = 'nextDay';
@@ -651,6 +685,9 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     public const PROPOSAL_LABEL_EXPRESS = 'express';
     public const PROPOSAL_LABEL_FLEXIBLE = 'flexible';
     public const PROPOSAL_LABEL_STORE_PICKUP = 'storePickup';
+    public const OVERNIGHT_TYPE_NOT_OVERNIGHT = 'notOvernight';
+    public const OVERNIGHT_TYPE_PARCEL_OVERNIGHT = 'parcelOvernight';
+    public const OVERNIGHT_TYPE_DELICATE_GOODS_OVERNIGHT = 'delicateGoodsOvernight';
 
     /**
      * Gets allowable values of the enum
@@ -687,20 +724,6 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
             self::PROOF_OF_DELIVERY_REQUIREMENT_PHOTO_ID,
             self::PROOF_OF_DELIVERY_REQUIREMENT_ANY,
             self::PROOF_OF_DELIVERY_REQUIREMENT_NONE,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getHandoffTypeAllowableValues()
-    {
-        return [
-            self::HANDOFF_TYPE_NONE,
-            self::HANDOFF_TYPE_RECEIVE,
-            self::HANDOFF_TYPE_HANDOFF,
         ];
     }
 
@@ -768,6 +791,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
             self::PROPOSAL_TYPES_STORE_PICKUP,
             self::PROPOSAL_TYPES_OWN_FLEET,
             self::PROPOSAL_TYPES_COLLECTION_POINT,
+            self::PROPOSAL_TYPES_PREMIUM,
         ];
     }
 
@@ -807,6 +831,20 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getOvernightTypeAllowableValues()
+    {
+        return [
+            self::OVERNIGHT_TYPE_NOT_OVERNIGHT,
+            self::OVERNIGHT_TYPE_PARCEL_OVERNIGHT,
+            self::OVERNIGHT_TYPE_DELICATE_GOODS_OVERNIGHT,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -833,6 +871,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('pickup_eta', $data ?? [], null);
         $this->setIfExists('dropoff_eta', $data ?? [], null);
         $this->setIfExists('courier_location', $data ?? [], null);
+        $this->setIfExists('pickup_location_id', $data ?? [], null);
         $this->setIfExists('origin', $data ?? [], null);
         $this->setIfExists('destination', $data ?? [], null);
         $this->setIfExists('customer', $data ?? [], null);
@@ -847,11 +886,10 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('customer_tracking_url', $data ?? [], null);
         $this->setIfExists('sender_tracking_url', $data ?? [], null);
         $this->setIfExists('order_tracking_info', $data ?? [], null);
-        $this->setIfExists('handoff_type', $data ?? [], null);
-        $this->setIfExists('handoff_info', $data ?? [], null);
         $this->setIfExists('used_credits', $data ?? [], null);
         $this->setIfExists('proof_of_collection', $data ?? [], null);
         $this->setIfExists('proof_of_delivery', $data ?? [], null);
+        $this->setIfExists('pu_notes', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('merchant_name', $data ?? [], null);
         $this->setIfExists('label_required', $data ?? [], null);
@@ -883,6 +921,12 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('proposal_label', $data ?? [], null);
         $this->setIfExists('is_nationwide', $data ?? [], null);
         $this->setIfExists('carrier_delivery_url', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('properties', $data ?? [], null);
+        $this->setIfExists('ecom_order_id', $data ?? [], null);
+        $this->setIfExists('overnight_type', $data ?? [], null);
+        $this->setIfExists('origin_draft_id', $data ?? [], null);
     }
 
     /**
@@ -946,18 +990,6 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
-        if ($this->container['handoff_type'] === null) {
-            $invalidProperties[] = "'handoff_type' can't be null";
-        }
-        $allowedValues = $this->getHandoffTypeAllowableValues();
-        if (!is_null($this->container['handoff_type']) && !in_array($this->container['handoff_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'handoff_type', must be one of '%s'",
-                $this->container['handoff_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['used_credits'] === null) {
             $invalidProperties[] = "'used_credits' can't be null";
         }
@@ -1023,6 +1055,15 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'proposal_label', must be one of '%s'",
                 $this->container['proposal_label'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getOvernightTypeAllowableValues();
+        if (!is_null($this->container['overnight_type']) && !in_array($this->container['overnight_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'overnight_type', must be one of '%s'",
+                $this->container['overnight_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1153,7 +1194,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerStatus
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseStatus
      */
     public function getStatus()
     {
@@ -1163,7 +1204,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerStatus $status status
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseStatus $status status
      *
      * @return self
      */
@@ -1367,6 +1408,33 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Gets pickup_location_id
+     *
+     * @return string|null
+     */
+    public function getPickupLocationId()
+    {
+        return $this->container['pickup_location_id'];
+    }
+
+    /**
+     * Sets pickup_location_id
+     *
+     * @param string|null $pickup_location_id The ID of the pickup location
+     *
+     * @return self
+     */
+    public function setPickupLocationId($pickup_location_id)
+    {
+        if (is_null($pickup_location_id)) {
+            throw new \InvalidArgumentException('non-nullable pickup_location_id cannot be null');
+        }
+        $this->container['pickup_location_id'] = $pickup_location_id;
+
+        return $this;
+    }
+
+    /**
      * Gets origin
      *
      * @return \OpenAPI\Client\Model\QuotePostRequestPickupInfoOneOf1InnerAddress
@@ -1423,7 +1491,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets customer
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseCustomer
      */
     public function getCustomer()
     {
@@ -1433,7 +1501,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets customer
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer $customer customer
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseCustomer $customer customer
      *
      * @return self
      */
@@ -1743,7 +1811,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets order_tracking_info
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo|null
      */
     public function getOrderTrackingInfo()
     {
@@ -1753,7 +1821,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets order_tracking_info
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerOrderTrackingInfo|null $order_tracking_info order_tracking_info
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseOrderTrackingInfo|null $order_tracking_info order_tracking_info
      *
      * @return self
      */
@@ -1763,70 +1831,6 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable order_tracking_info cannot be null');
         }
         $this->container['order_tracking_info'] = $order_tracking_info;
-
-        return $this;
-    }
-
-    /**
-     * Gets handoff_type
-     *
-     * @return string
-     */
-    public function getHandoffType()
-    {
-        return $this->container['handoff_type'];
-    }
-
-    /**
-     * Sets handoff_type
-     *
-     * @param string $handoff_type handoff_type
-     *
-     * @return self
-     */
-    public function setHandoffType($handoff_type)
-    {
-        if (is_null($handoff_type)) {
-            throw new \InvalidArgumentException('non-nullable handoff_type cannot be null');
-        }
-        $allowedValues = $this->getHandoffTypeAllowableValues();
-        if (!in_array($handoff_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'handoff_type', must be one of '%s'",
-                    $handoff_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['handoff_type'] = $handoff_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets handoff_info
-     *
-     * @return \OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo|null
-     */
-    public function getHandoffInfo()
-    {
-        return $this->container['handoff_info'];
-    }
-
-    /**
-     * Sets handoff_info
-     *
-     * @param \OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo|null $handoff_info handoff_info
-     *
-     * @return self
-     */
-    public function setHandoffInfo($handoff_info)
-    {
-        if (is_null($handoff_info)) {
-            throw new \InvalidArgumentException('non-nullable handoff_info cannot be null');
-        }
-        $this->container['handoff_info'] = $handoff_info;
 
         return $this;
     }
@@ -1861,7 +1865,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets proof_of_collection
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner[]|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseProofOfCollectionInner[]|null
      */
     public function getProofOfCollection()
     {
@@ -1871,7 +1875,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets proof_of_collection
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner[]|null $proof_of_collection Proof of collection for an order
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseProofOfCollectionInner[]|null $proof_of_collection Proof of collection for an order
      *
      * @return self
      */
@@ -1888,7 +1892,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets proof_of_delivery
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner[]|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseProofOfCollectionInner[]|null
      */
     public function getProofOfDelivery()
     {
@@ -1898,7 +1902,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets proof_of_delivery
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerProofOfCollectionInner[]|null $proof_of_delivery Proof of delivery for an order
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseProofOfCollectionInner[]|null $proof_of_delivery Proof of delivery for an order
      *
      * @return self
      */
@@ -1908,6 +1912,33 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable proof_of_delivery cannot be null');
         }
         $this->container['proof_of_delivery'] = $proof_of_delivery;
+
+        return $this;
+    }
+
+    /**
+     * Gets pu_notes
+     *
+     * @return string[]|null
+     */
+    public function getPuNotes()
+    {
+        return $this->container['pu_notes'];
+    }
+
+    /**
+     * Sets pu_notes
+     *
+     * @param string[]|null $pu_notes Pickup notes from each delivery in this order
+     *
+     * @return self
+     */
+    public function setPuNotes($pu_notes)
+    {
+        if (is_null($pu_notes)) {
+            throw new \InvalidArgumentException('non-nullable pu_notes cannot be null');
+        }
+        $this->container['pu_notes'] = $pu_notes;
 
         return $this;
     }
@@ -2269,7 +2300,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets pickup_contact_info
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseCustomer|null
      */
     public function getPickupContactInfo()
     {
@@ -2279,7 +2310,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets pickup_contact_info
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerCustomer|null $pickup_contact_info pickup_contact_info
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseCustomer|null $pickup_contact_info pickup_contact_info
      *
      * @return self
      */
@@ -2332,7 +2363,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets sender_contact_details
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails|null
+     * @return \OpenAPI\Client\Model\OrderPostRequestSenderContactDetails|null
      */
     public function getSenderContactDetails()
     {
@@ -2342,7 +2373,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets sender_contact_details
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerSenderContactDetails|null $sender_contact_details sender_contact_details
+     * @param \OpenAPI\Client\Model\OrderPostRequestSenderContactDetails|null $sender_contact_details sender_contact_details
      *
      * @return self
      */
@@ -2467,7 +2498,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets route_info
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerRouteInfo|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseRouteInfo|null
      */
     public function getRouteInfo()
     {
@@ -2477,7 +2508,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets route_info
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerRouteInfo|null $route_info route_info
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseRouteInfo|null $route_info route_info
      *
      * @return self
      */
@@ -2558,7 +2589,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets schedule_info
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfo|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseScheduleInfo|null
      */
     public function getScheduleInfo()
     {
@@ -2568,7 +2599,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets schedule_info
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerScheduleInfo|null $schedule_info schedule_info
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseScheduleInfo|null $schedule_info schedule_info
      *
      * @return self
      */
@@ -2693,7 +2724,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets edit_info
      *
-     * @return \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerEditInfo|null
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseEditInfo|null
      */
     public function getEditInfo()
     {
@@ -2703,7 +2734,7 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets edit_info
      *
-     * @param \OpenAPI\Client\Model\OrdersPaginatedHistoryGet200ResponseResultsInnerEditInfo|null $edit_info edit_info
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseEditInfo|null $edit_info edit_info
      *
      * @return self
      */
@@ -2804,6 +2835,178 @@ class OrderPost201Response implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable carrier_delivery_url cannot be null');
         }
         $this->container['carrier_delivery_url'] = $carrier_delivery_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param \DateTime|null $created_at The creation time of the order in ISO8601 format
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param \DateTime|null $updated_at The last update time of the order in ISO8601 format
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets properties
+     *
+     * @return \OpenAPI\Client\Model\OrderPost201ResponseProperties|null
+     */
+    public function getProperties()
+    {
+        return $this->container['properties'];
+    }
+
+    /**
+     * Sets properties
+     *
+     * @param \OpenAPI\Client\Model\OrderPost201ResponseProperties|null $properties properties
+     *
+     * @return self
+     */
+    public function setProperties($properties)
+    {
+        if (is_null($properties)) {
+            throw new \InvalidArgumentException('non-nullable properties cannot be null');
+        }
+        $this->container['properties'] = $properties;
+
+        return $this;
+    }
+
+    /**
+     * Gets ecom_order_id
+     *
+     * @return string|null
+     */
+    public function getEcomOrderId()
+    {
+        return $this->container['ecom_order_id'];
+    }
+
+    /**
+     * Sets ecom_order_id
+     *
+     * @param string|null $ecom_order_id The ecom ID of the order
+     *
+     * @return self
+     */
+    public function setEcomOrderId($ecom_order_id)
+    {
+        if (is_null($ecom_order_id)) {
+            throw new \InvalidArgumentException('non-nullable ecom_order_id cannot be null');
+        }
+        $this->container['ecom_order_id'] = $ecom_order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets overnight_type
+     *
+     * @return string|null
+     */
+    public function getOvernightType()
+    {
+        return $this->container['overnight_type'];
+    }
+
+    /**
+     * Sets overnight_type
+     *
+     * @param string|null $overnight_type The type of overnight delivery (if it's overnight)
+     *
+     * @return self
+     */
+    public function setOvernightType($overnight_type)
+    {
+        if (is_null($overnight_type)) {
+            throw new \InvalidArgumentException('non-nullable overnight_type cannot be null');
+        }
+        $allowedValues = $this->getOvernightTypeAllowableValues();
+        if (!in_array($overnight_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'overnight_type', must be one of '%s'",
+                    $overnight_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['overnight_type'] = $overnight_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets origin_draft_id
+     *
+     * @return string|null
+     */
+    public function getOriginDraftId()
+    {
+        return $this->container['origin_draft_id'];
+    }
+
+    /**
+     * Sets origin_draft_id
+     *
+     * @param string|null $origin_draft_id The original draft order id
+     *
+     * @return self
+     */
+    public function setOriginDraftId($origin_draft_id)
+    {
+        if (is_null($origin_draft_id)) {
+            throw new \InvalidArgumentException('non-nullable origin_draft_id cannot be null');
+        }
+        $this->container['origin_draft_id'] = $origin_draft_id;
 
         return $this;
     }

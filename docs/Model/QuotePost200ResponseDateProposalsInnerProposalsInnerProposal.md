@@ -17,14 +17,13 @@ Name | Type | Description | Notes
 **delivery_company** | **string** | The company that will perform the delivery (if known) | [optional]
 **labels** | **string[]** | An array of labels for this proposal |
 **price_level** | **int** |  | [optional]
-**handoff_info** | [**\OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo**](QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo.md) |  | [optional]
 **types** | **string[]** |  | [optional]
 **predicted_emission_saving_kg** | **float** |  | [optional]
 **vehicle_type** | **string** |  | [optional]
 **specific_liability_coverage** | [**\OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalSpecificLiabilityCoverage**](QuotePost200ResponseDateProposalsInnerProposalsInnerProposalSpecificLiabilityCoverage.md) |  | [optional]
 **overnight_type** | **string** | The type of overnight delivery (if it&#39;s overnight) |
 **estimated_pickup_within_store_hours** | **bool** | Whether the estimated pickup is within store hours |
-**origin_destination_distance_meters** | **int** |  | [optional]
+**origin_destination_distance_meters** | **int** | The distance between the origin and destination in meters | [optional]
 **promotion_id** | **string** | The id of the promotion that this proposal was created from | [optional]
 **promotion_applied** | **bool** | Whether a promotion was applied to this proposal | [optional]
 

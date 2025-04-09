@@ -289,6 +289,7 @@ class QuoteMultiRoutePost200ResponseProposalsInnerRoutesInner implements ModelIn
     public const TYPES_STORE_PICKUP = 'storePickup';
     public const TYPES_OWN_FLEET = 'ownFleet';
     public const TYPES_COLLECTION_POINT = 'CollectionPoint';
+    public const TYPES_PREMIUM = 'Premium';
     public const VEHICLE_TYPE_PUSHBIKE = 'pushbike';
     public const VEHICLE_TYPE_MOTORBIKE = 'motorbike';
     public const VEHICLE_TYPE_CARGO_BIKE = 'cargo_bike';
@@ -311,6 +312,7 @@ class QuoteMultiRoutePost200ResponseProposalsInnerRoutesInner implements ModelIn
             self::TYPES_STORE_PICKUP,
             self::TYPES_OWN_FLEET,
             self::TYPES_COLLECTION_POINT,
+            self::TYPES_PREMIUM,
         ];
     }
 

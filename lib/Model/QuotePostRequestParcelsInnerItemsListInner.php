@@ -64,7 +64,8 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         'quantity' => 'int',
         'sku' => 'string',
         'weight_kg' => 'float',
-        'collection_config' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfig'
+        'collection_config' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerCollectionConfig',
+        'external_data' => '\OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerExternalData'
     ];
 
     /**
@@ -80,7 +81,8 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         'quantity' => 'int32',
         'sku' => null,
         'weight_kg' => 'double',
-        'collection_config' => null
+        'collection_config' => null,
+        'external_data' => null
     ];
 
     /**
@@ -94,7 +96,8 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         'quantity' => false,
         'sku' => false,
         'weight_kg' => false,
-        'collection_config' => false
+        'collection_config' => false,
+        'external_data' => false
     ];
 
     /**
@@ -188,7 +191,8 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         'quantity' => 'quantity',
         'sku' => 'sku',
         'weight_kg' => 'weightKg',
-        'collection_config' => 'collectionConfig'
+        'collection_config' => 'collectionConfig',
+        'external_data' => 'externalData'
     ];
 
     /**
@@ -202,7 +206,8 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         'quantity' => 'setQuantity',
         'sku' => 'setSku',
         'weight_kg' => 'setWeightKg',
-        'collection_config' => 'setCollectionConfig'
+        'collection_config' => 'setCollectionConfig',
+        'external_data' => 'setExternalData'
     ];
 
     /**
@@ -216,7 +221,8 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         'quantity' => 'getQuantity',
         'sku' => 'getSku',
         'weight_kg' => 'getWeightKg',
-        'collection_config' => 'getCollectionConfig'
+        'collection_config' => 'getCollectionConfig',
+        'external_data' => 'getExternalData'
     ];
 
     /**
@@ -282,6 +288,7 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
         $this->setIfExists('sku', $data ?? [], null);
         $this->setIfExists('weight_kg', $data ?? [], null);
         $this->setIfExists('collection_config', $data ?? [], null);
+        $this->setIfExists('external_data', $data ?? [], null);
     }
 
     /**
@@ -493,6 +500,33 @@ class QuotePostRequestParcelsInnerItemsListInner implements ModelInterface, Arra
             throw new \InvalidArgumentException('non-nullable collection_config cannot be null');
         }
         $this->container['collection_config'] = $collection_config;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_data
+     *
+     * @return \OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerExternalData|null
+     */
+    public function getExternalData()
+    {
+        return $this->container['external_data'];
+    }
+
+    /**
+     * Sets external_data
+     *
+     * @param \OpenAPI\Client\Model\QuotePostRequestParcelsInnerItemsListInnerExternalData|null $external_data external_data
+     *
+     * @return self
+     */
+    public function setExternalData($external_data)
+    {
+        if (is_null($external_data)) {
+            throw new \InvalidArgumentException('non-nullable external_data cannot be null');
+        }
+        $this->container['external_data'] = $external_data;
 
         return $this;
     }

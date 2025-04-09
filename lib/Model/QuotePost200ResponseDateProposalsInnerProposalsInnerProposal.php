@@ -72,7 +72,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         'delivery_company' => 'string',
         'labels' => 'string[]',
         'price_level' => 'int',
-        'handoff_info' => '\OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo',
         'types' => 'string[]',
         'predicted_emission_saving_kg' => 'float',
         'vehicle_type' => 'string',
@@ -105,7 +104,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         'delivery_company' => null,
         'labels' => null,
         'price_level' => 'int32',
-        'handoff_info' => null,
         'types' => null,
         'predicted_emission_saving_kg' => 'float',
         'vehicle_type' => null,
@@ -136,7 +134,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         'delivery_company' => false,
         'labels' => false,
         'price_level' => false,
-        'handoff_info' => false,
         'types' => false,
         'predicted_emission_saving_kg' => false,
         'vehicle_type' => false,
@@ -247,7 +244,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         'delivery_company' => 'deliveryCompany',
         'labels' => 'labels',
         'price_level' => 'priceLevel',
-        'handoff_info' => 'handoffInfo',
         'types' => 'types',
         'predicted_emission_saving_kg' => 'predictedEmissionSavingKg',
         'vehicle_type' => 'vehicleType',
@@ -278,7 +274,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         'delivery_company' => 'setDeliveryCompany',
         'labels' => 'setLabels',
         'price_level' => 'setPriceLevel',
-        'handoff_info' => 'setHandoffInfo',
         'types' => 'setTypes',
         'predicted_emission_saving_kg' => 'setPredictedEmissionSavingKg',
         'vehicle_type' => 'setVehicleType',
@@ -309,7 +304,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         'delivery_company' => 'getDeliveryCompany',
         'labels' => 'getLabels',
         'price_level' => 'getPriceLevel',
-        'handoff_info' => 'getHandoffInfo',
         'types' => 'getTypes',
         'predicted_emission_saving_kg' => 'getPredictedEmissionSavingKg',
         'vehicle_type' => 'getVehicleType',
@@ -375,6 +369,7 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
     public const TYPES_STORE_PICKUP = 'storePickup';
     public const TYPES_OWN_FLEET = 'ownFleet';
     public const TYPES_COLLECTION_POINT = 'CollectionPoint';
+    public const TYPES_PREMIUM = 'Premium';
     public const VEHICLE_TYPE_PUSHBIKE = 'pushbike';
     public const VEHICLE_TYPE_MOTORBIKE = 'motorbike';
     public const VEHICLE_TYPE_CARGO_BIKE = 'cargo_bike';
@@ -430,6 +425,7 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
             self::TYPES_STORE_PICKUP,
             self::TYPES_OWN_FLEET,
             self::TYPES_COLLECTION_POINT,
+            self::TYPES_PREMIUM,
         ];
     }
 
@@ -494,7 +490,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
         $this->setIfExists('delivery_company', $data ?? [], null);
         $this->setIfExists('labels', $data ?? [], null);
         $this->setIfExists('price_level', $data ?? [], null);
-        $this->setIfExists('handoff_info', $data ?? [], null);
         $this->setIfExists('types', $data ?? [], null);
         $this->setIfExists('predicted_emission_saving_kg', $data ?? [], null);
         $this->setIfExists('vehicle_type', $data ?? [], null);
@@ -985,33 +980,6 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
     }
 
     /**
-     * Gets handoff_info
-     *
-     * @return \OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo|null
-     */
-    public function getHandoffInfo()
-    {
-        return $this->container['handoff_info'];
-    }
-
-    /**
-     * Sets handoff_info
-     *
-     * @param \OpenAPI\Client\Model\QuotePost200ResponseDateProposalsInnerProposalsInnerProposalHandoffInfo|null $handoff_info handoff_info
-     *
-     * @return self
-     */
-    public function setHandoffInfo($handoff_info)
-    {
-        if (is_null($handoff_info)) {
-            throw new \InvalidArgumentException('non-nullable handoff_info cannot be null');
-        }
-        $this->container['handoff_info'] = $handoff_info;
-
-        return $this;
-    }
-
-    /**
      * Gets types
      *
      * @return string[]|null
@@ -1215,7 +1183,7 @@ class QuotePost200ResponseDateProposalsInnerProposalsInnerProposal implements Mo
     /**
      * Sets origin_destination_distance_meters
      *
-     * @param int|null $origin_destination_distance_meters origin_destination_distance_meters
+     * @param int|null $origin_destination_distance_meters The distance between the origin and destination in meters
      *
      * @return self
      */
