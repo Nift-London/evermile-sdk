@@ -1168,7 +1168,7 @@ class OrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \SplFileObject
+     * @return string
      */
     public function orderOrderIdLabelGet($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, string $contentType = self::contentTypes['orderOrderIdLabelGet'][0])
     {
@@ -1188,7 +1188,7 @@ class OrdersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \SplFileObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */
     public function orderOrderIdLabelGetWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, string $contentType = self::contentTypes['orderOrderIdLabelGet'][0])
     {
@@ -1231,11 +1231,11 @@ class OrdersApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\SplFileObject' === '\SplFileObject') {
+                    if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\SplFileObject' !== 'string') {
+                        if ('string' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1253,13 +1253,13 @@ class OrdersApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                        ObjectSerializer::deserialize($content, 'string', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\SplFileObject';
+            $returnType = 'string';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1292,7 +1292,7 @@ class OrdersApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\SplFileObject',
+                        'string',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1340,7 +1340,7 @@ class OrdersApi
      */
     public function orderOrderIdLabelGetAsyncWithHttpInfo($order_id, $x_evermile_merchant_id = null, $x_evermile_trace_id = null, string $contentType = self::contentTypes['orderOrderIdLabelGet'][0])
     {
-        $returnType = '\SplFileObject';
+        $returnType = 'string';
         $request = $this->orderOrderIdLabelGetRequest($order_id, $x_evermile_merchant_id, $x_evermile_trace_id, $contentType);
 
         return $this->client
@@ -1431,7 +1431,7 @@ class OrdersApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/pdf', 'text/html', 'text/url', ],
+            ['text/url', 'application/pdf', 'text/html', ],
             $contentType,
             $multipart
         );

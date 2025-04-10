@@ -19123,6 +19123,10 @@ paths:
         '201':
           description: Label successfully created
           content:
+            text/url:
+              schema:
+                type: string
+                description: URL to download the label
             application/pdf:
               schema:
                 type: string
@@ -19132,10 +19136,6 @@ paths:
               schema:
                 type: string
                 description: The HTML content of the label
-            text/url:
-              schema:
-                type: string
-                description: URL to download the label
   '/order/{orderId}/liveTracking':
     parameters:
       - in: header

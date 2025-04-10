@@ -228,7 +228,7 @@ try {
 ## `orderOrderIdLabelGet()`
 
 ```php
-orderOrderIdLabelGet($order_id, $x_evermile_merchant_id, $x_evermile_trace_id): \SplFileObject
+orderOrderIdLabelGet($order_id, $x_evermile_merchant_id, $x_evermile_trace_id): string
 ```
 
 Create a label for an order
@@ -277,7 +277,7 @@ try {
 
 ### Return type
 
-**\SplFileObject**
+**string**
 
 ### Authorization
 
@@ -286,7 +286,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/pdf`, `text/html`, `text/url`
+- **Accept**: `text/url`, `application/pdf`, `text/html`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
